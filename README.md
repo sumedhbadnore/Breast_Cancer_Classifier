@@ -1,66 +1,54 @@
-# Detecting Breast Cancer using Neural Nets
+# Breast Cancer Classifier Using Neural Networks
 
-## What is the Project all about?
-In India and over the world, Cancer has become a deadly disease and more and more people are suffering from Cancer and a survey says one in every 30 women suffer from this disease in their lifetime and so basically the project was first thought of because of the increase in cases of breast cancer and one thing which is very important that if we can detect the Cancer at an early stage then there is an increased chances of it getting cured.So this project lays a foundation in making the detection of the cancer automated so that more and more people can get it diagonised early so as get cured.
+## Introduction:
+One of the most prevalent cancers in women globally is breast cancer, accounting for 25% of all cancer cases. It occurs when abnormal cells in the breast tissue grow uncontrollably, forming a tumor. Breast cancer can affect women of any age, although it is more frequent in older women. Men can acquire breast cancer as well, though it is considerably less prevalent. Women's lives are significantly impacted by breast cancer, a serious health issue. It may result in
+bodily symptoms including breast soreness, nipple discharge, and lumps in the breast. Anxiety, despair, and fear of recurrence. 
 
-## How it is implemented?
+## What are Mammograms?
 
-The signs of detection are Masses and micro calcification clusters which are important in early detection of breast cancer.
+Breast cancer screening and diagnosis are both done using the medical imaging procedure known as mammography. Images of the breast tissue are made using a specialised X-ray machine in this procedure. Mammography is normally advised as a standard screening technique for women over the age of 40, though it might be advised sooner if there is a family history of breast cancer or other risk factors.
 
-Micro calcification are nothing but tiny mineral deposits within the breast tissue. They look similar to small white colored spots. They may or may not be caused by cancer.
+## Project Objective:
 
-Masses can be many things, including cysts (fluid-filled sacs) and non-cancerous solid tumors, but they could also be cancerous.
-
-The difficulty in cancer detection is that the abnormalities from normal breast tissues are hard to read because of their subtle appearance and ambiguous margins.Automated tools which can help radiologist in early detection of breast cancer.
-
-Further we have classified the cancer into three categories after its detection- Normal,Malignant,Benign.
+The goal is to create a computer assisted diagnosis (CAD) system that can categorise mammogram
+pictures as benign (non-cancerous) or malignant (cancerous). Radiologists employ CAD tools to
+increase the precision of diagnoses. Grey Level Co-occurrence Matrix (GLCM) along 0° and DWT
+(Discrete Wavelet Transform), which is used as a method for determining feature extraction to
+transform the mammogram image into a set of coefficients that can be used as an input to the model,
+were used in the proposed system to calculate texture features from mammograms. Due to the
+widespread use of artificial neural networks in many industries, including pattern recognition,
+medical diagnosis, machine learning, etc., the most efficient features from the calculated features that
+had a significant impact on achieving the desired output were chosen and then transferred to
+Probabilistic Neural Network (PNN) for training and classification. The proposed approach achieved
+overall accuracy of 94.2% using a mini-MIAS database in this investigation.
 
 ## Methodology
 
-We​ ​have​ ​used​ ​adaptive​ ​mean​ ​filter​ ​to​ ​remove​ ​noise​ ​from​ ​image.​ ​since​ ​it​ ​is​ ​better among​ ​all​ ​the​ ​spatial​ ​filters​ ​and​ ​distinguish​ ​fine​ ​details​ ​from​ ​noise.​
-​The​ ​Adaptive Median​ ​Filter​ ​performs​ ​spatial​ ​processing​ ​to​ ​determine​ ​which​ ​pixels​ ​in​ ​an​ ​image have​ ​been​ ​affected​ ​by​ ​impulse​ ​noise.​ ​The​ ​Adaptive​ ​Median​ ​Filter​ ​classifies​ ​pixels as​ ​noise​ ​by​ ​comparing​ ​each​ ​pixel​ ​in​ ​the​ ​image​ ​to​ ​its​ ​surrounding​ ​neighbor​ ​pixels. 
+In the proposed methodology, the following stages were conducted to develop a breast cancer
+detection system: The first stage is Input data collection where Mammograms were collected as
+input data for the system. The second stage is Median filtering, it is used minimize noise and
+improve picture quality, the median filter was used to mammogram images. By replacing each
+pixel value with the median of its surrounding pixels, this technique helps to smooth out the
+image. The third stage contains, Image segregation using Gaussian Mixture Model (GMM): The
+Gaussian Mixture Model (GMM) is a statistical model that is used to depict the probability
+distribution of data. In this research, The mammography pictures were divided into separate areas
+using GMM depending on their intensity levels. This aids in the identification of possibly
+malignant areas. The next stage is, Feature extraction using Gray Level Co-occurrence Matrix
+(GLCM): GLCM is a statistical method used to extract texture features from the images. In this
+research, GLCM was utilised to extract characteristics from mammography images such as
+contrast, correlation, variance, inverse difference moment, entropy, and angular second moment.
+The last stage is, Classification using Probabilistic Neural Network (PNN): A probabilistic neural
+network (PNN) is a form of neural network that is often used for pattern recognition tasks. Based
+on the retrieved characteristics, PNN was implemented in this study to categorise mammography
+imagery into three classes: normal breast, benign breast cancer, and malignant breast cancer.
 
-The​ ​size​ ​of​ ​the​ ​neighborhood​ ​is​ ​adjustable,​ ​as​ ​well​ ​as​ ​the​ ​threshold​ ​for​ ​the comparison.​ ​A​ ​pixel​ ​that​ ​is​ ​different​ ​from​ ​a​ ​majority​ ​of​ ​its​ ​neighbors,​ ​as​ ​well​ ​as being​ ​not​ ​structurally​ ​aligned​ ​with​ ​those​ ​pixels​ ​to​ ​which​ ​it​ ​is​ ​similar,​ ​is​ ​labeled​ ​as impulse​ ​noise.
+![image](https://github.com/sumedhbadnore/Breast_Cancer_Classifier/assets/66485793/b39738bf-1a5e-4e17-909d-5be5fb79f5a0)
 
-​These​ ​noise​ ​pixels​ ​are​ ​then​ ​replaced​ ​by​ ​the​ ​median​ ​pixel​ ​value​ ​of the​ ​pixels​ ​in​ ​the​ ​neighborhood​ ​that​ ​have​ ​passed​ ​the​ ​noise​ ​labeling​ ​test.we​ ​are initially​ ​converting​ ​the​ ​image​ ​into​ ​grayscale​ ​image​ ​using​ ​rgb2gray()​ ​function​ ​then ​​applying​ ​adaptive​ ​mean​ ​filtering​ ​to​ ​the​ ​resulting​ ​image​ ​and​ ​then​ ​converted​ ​the image​ ​into​ ​unsigned​ ​integer​ ​8​ ​using​ ​unit8()​ ​function.
+## Dataflow Diagram
 
-​In​ ​this​ ​way​ ​we​ ​preprocessed image.then​ ​we​ ​performed​ ​GMM​ ​segmentation(Gaussian​ ​Mixture​ ​Model)​ ​on​ ​the preprocessed​ ​image​ ​with​ ​number​ ​of​ ​regions​ ​2​ ​and​ ​number​ ​of​ ​GMM​ ​components 2​ ​and​ ​maximum​ ​number​ ​iterations​ ​10.​ ​we​ ​performed​ ​k-means​ ​segmentation​ ​with k=2.​ ​then​ ​we​ ​Implemented​ ​HMRF-EM​ ​(Hidden​ ​Markov​ ​Random​ ​Field​ ​Model)​ ​and its​ ​Expectation-Maximization​ ​Algorithm. 
- 
+![image](https://github.com/sumedhbadnore/Breast_Cancer_Classifier/assets/66485793/30969978-266b-4961-98c2-cf52aff100ea)
 
-**The picture decribes the difference between Malignant and Benign tissues in Breast**
-
-![Difference between Malignant and Benign tissues in Breast](https://raw.githubusercontent.com/st186/Breast-cancer-detection-using-Neural-networks/fca5059fa43d76a5cce9a39968f6b0d5e1051cfd/cancer2.PNG)
-
-## Block Diagram of the Project
-
-![Preview](https://raw.githubusercontent.com/st186/Breast-cancer-detection-using-Neural-networks/7cccc44b3ce4a51219e97df4f18da6147367996a/cancer.PNG)
 
 ## How to make the project work?
 
-Open the project in matlab and then run guidemo and then a gui mode window will open and then just follow the steps there.For further information check the screenshots.
-
-## References 
-
-Anuj Kumar Singh and Bhupendra Gupta “A novel approach for breast cancer detection and segmentation in mammography ”  Expert System With Applications 42(2015)990-1002.
-
-J. Dheeba, N.Albert Singh, S. Tamil Selvi “Computer-aided detection of breast cancer on mammograms: A swarm intelligence optimized wavelet neural network approach” Journal of Biomedical Informatics (2014).
-
-## Team Members 
-
-Madhusudan Verma,
-Nagaraja Tarun,
-Subham Tewari(me)
-
-## Screenshots
-
-**Now you have to browse the image of the mammograms and give it as an input**
-![Preview](https://raw.githubusercontent.com/st186/Breast-cancer-detection-using-Neural-networks/457045e96b1177a41e9f641c5319499b79234bf5/Screenshot%20(12).png)
-
-**In this step adaptive mean filtering is done**
-![Preview](https://raw.githubusercontent.com/st186/Breast-cancer-detection-using-Neural-networks/457045e96b1177a41e9f641c5319499b79234bf5/Screenshot%20(13).png)
-
-**GMM Segmentation is done**
-![Preview](https://raw.githubusercontent.com/st186/Breast-cancer-detection-using-Neural-networks/457045e96b1177a41e9f641c5319499b79234bf5/Screenshot%20(14).png)
-
-**So you can see one as the output in the right side which depicts that the cancer is benign**
-![Preview](https://raw.githubusercontent.com/st186/Breast-cancer-detection-using-Neural-networks/457045e96b1177a41e9f641c5319499b79234bf5/Screenshot%20(15).png)
+Open the project in matlab and then run guidemo and then a gui mode window will open and then just follow the steps there. For further information **watch the __[project video](https://youtu.be/Kz0Ok8bhysk).__**

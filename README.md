@@ -51,4 +51,4 @@ imagery into three classes: normal breast, benign breast cancer, and malignant b
 
 ## How to make the project work?
 
-Open the project in matlab and then run guidemo and then a gui mode window will open and then just follow the steps there. For further information **watch the __[project video](https://youtu.be/Kz0Ok8bhysk).__**
+Open the project in matlab and then run guidemo.m and then a gui mode window will open and then just follow the steps there. For further information **watch the __[project video](https://youtu.be/Kz0Ok8bhysk).__**
